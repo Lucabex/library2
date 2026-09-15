@@ -67,6 +67,15 @@ function App() {
       setStatus("solved");
       return true;
     }
+    setTimeout(() => {
+      const cpuMove = puzzle.solution[nextIndex];
+      const from = cpuMove.substring(0, 2);
+      const to = cpuMove.substring(2, 4);
+      const cpuGameCopy = new Chess(gameCopy.fen());
+      cpuGameCopy.move({ from, to, promotion: "q" });
+      setGame(cpuGameCopy);
+      setCurrentMoveIndex(nextIndex + 1);
+    });
   }
 
   return (
